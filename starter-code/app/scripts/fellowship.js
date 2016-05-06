@@ -28,38 +28,79 @@ function makeMiddleEarth() {
   // inside, add each land as an article tag
   // inside each article tag include an h1 with the name of the land
   // append middle-earth to your document body
-}
-
+  var middleEarth = document.createElement("section")
+    for (i = 0 ; i < lands.length ; i++) {
+        var land = document.createElement("article");
+        land.innerHTML = "<h1>" + lands[i] + "</h1>"; 
+        middleEarth.appendChild(land);    
+    }
+    body.appendChild(middleEarth);
+};
 makeMiddleEarth();
 
 
 // Part 2
+var theShire = body.querySelectorAll("article")[0];
+var rivendell = body.querySelectorAll("article")[1];
+var mordor = body.querySelectorAll("article")[2];
+
 
 function makeHobbits() {
-  // display an unordered list of hobbits in the shire (which is the second article tag on the page)
+  // display an unordered list of hobbits in the shire 
+  //(which is the second article tag on the page)
   // give each hobbit a class of hobbit
+  // this creates an unordered list 
+  var listHobbits = document.createElement("ul");
+    for ( var i = 0, len = hobbits.length ; i < len ; i++) {
+      var hobbit = document.createElement("li");
+      hobbit.className = "hobbit";
+      hobbit.innerHTML = "<li>" + hobbits[i] + "</li>"
+      listHobbits.appendChild(hobbit);
+    }
+    theShire.appendChild(listHobbits);
 }
+makeHobbits();
 
 
 // Part 3
+var frodo = body.querySelectorAll('li')[0]; // we are looking for li because we created above took hobbits and added them in a list
+
 
 function keepItSecretKeepItSafe() {
   // create a div with an id of 'the-ring'
   // give the div a class of 'magic-imbued-jewelry'
-  // add an event listener so that when a user clicks on the ring, the nazgulScreech function (provided) is invoked
+  // add an event listener so that when a user clicks on the ring, 
+  // the nazgulScreech function (provided) is invoked
   // add the ring as a child of Frodo
-}
+  var theRing = document.createElement("div");
+  theRing.setAttribute("id", "the-ring");  // we are using set Attribute because we are creating an ID because we are going call this id
+  theRing.className =  "magic-imbued-jewelry"; // 
 
+  //theRing.className = "magic-imbued-jewelry";
+  
+  theRing.addEventListener("click", nazgulScreech);
+  frodo.appendChild(theRing);  // appending theRing to Frodo (to where Frodo is located on the page)
+}
+keepItSecretKeepItSafe();
 
 // Part 4
 
 
 function makeBuddies() {
   // create an aside tag
+  var aside = document.createElement("aside"); // creates a new variable with the aside tag
   // attach an unordered list of the 'buddies' in the aside
+  var buddyList = document.createElement("ul"); // creates the element unordered list
+    for (var i = 0, len = buddies.length ; i < len ; i++) {
+      var buddy = document.createElement("li");
+    buddy.textContent = buddies[i];
+    buddyList.appendChild(buddy);
+  }
   // insert your aside as a child element of rivendell
+  aside.appendChild(buddyList);
+  rivendell.appendChild(aside);
 }
-
+makeBuddies();
 
 // Part 5
 
